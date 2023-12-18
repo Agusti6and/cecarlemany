@@ -19,7 +19,7 @@ public class Main {
         Map<Integer, String> mainMenuOptions = new HashMap<>() {{
             put(1, "Get expeditions of an expeditionary");
             put(2, "Create expeditionary");
-            put(3, "List expeditionaries");
+            put(3, "List expeditioners");
             put(5, "Exit program");
         }};
 
@@ -35,16 +35,16 @@ public class Main {
             switch (selectedOption) {
                 case 1 -> getExpeditionsByExpeditionaryIDMenu(consoleLineScanner, excursionCenter);
                 case 2 -> createExpeditionaryMenu(consoleLineScanner, excursionCenter);
-                case 3 -> getAllExpeditionariesMenu(excursionCenter);
+                case 3 -> getAllExpeditionersMenu(excursionCenter);
                 case 5 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
     }
 
-    private static void getAllExpeditionariesMenu(ExcursionCenter excursionCenter) {
-        List<Expeditionary> expeditionaries = excursionCenter.retrieveExpeditionaries();
-        for (Expeditionary expeditionary : expeditionaries) {
+    private static void getAllExpeditionersMenu(ExcursionCenter excursionCenter) {
+        List<Expeditionary> expeditioners = excursionCenter.retrieveExpeditioners();
+        for (Expeditionary expeditionary : expeditioners) {
             ExpeditionaryConsolePrinter expeditionaryConsolePrinter = new ExpeditionaryConsolePrinter(expeditionary);
             expeditionaryConsolePrinter.print();
         }

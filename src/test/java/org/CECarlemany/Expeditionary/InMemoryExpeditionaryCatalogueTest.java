@@ -13,22 +13,22 @@ class InMemoryExpeditionaryCatalogueTest {
 
     @Test
     void should_call_add_method_on_addExpeditionary() {
-        List expeditionaries = mock(List.class);
-        InMemoryExpeditionaryCatalogue inMemoryExpeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(expeditionaries);
+        List expeditioners = mock(List.class);
+        InMemoryExpeditionaryCatalogue inMemoryExpeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(expeditioners);
         Expeditionary expeditionary = new Alpinist(UUID.randomUUID().toString(), "Joan");
 
         inMemoryExpeditionaryCatalogue.addExpeditionary(expeditionary);
 
-        verify(expeditionaries).add(expeditionary);
+        verify(expeditioners).add(expeditionary);
     }
 
     @Test
-    void retrieveExpeditionaries() {
-        List<Expeditionary> expeditionaries = List.of(new Alpinist(UUID.randomUUID().toString(), "Joan"));
-        InMemoryExpeditionaryCatalogue inMemoryExpeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(expeditionaries);
+    void retrieveExpeditioners() {
+        List<Expeditionary> expeditioners = List.of(new Alpinist(UUID.randomUUID().toString(), "Joan"));
+        InMemoryExpeditionaryCatalogue inMemoryExpeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(expeditioners);
 
-        List<Expeditionary> foundExpeditionaries = inMemoryExpeditionaryCatalogue.retrieveExpeditionaries();
+        List<Expeditionary> foundExpeditioners = inMemoryExpeditionaryCatalogue.retrieveExpeditioners();
 
-        assertEquals(expeditionaries, foundExpeditionaries);
+        assertEquals(expeditioners, foundExpeditioners);
     }
 }

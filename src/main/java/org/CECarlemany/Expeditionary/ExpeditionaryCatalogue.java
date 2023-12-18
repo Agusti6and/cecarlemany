@@ -5,5 +5,5 @@ import java.util.List;
 public interface ExpeditionaryCatalogue {
     void addExpeditionary(Expeditionary expectedExpeditionary);
 
-    List<Expeditionary> retrieveExpeditionaries();
+    List<Expeditionary> retrieveExpeditioners();
 }

@@ -52,12 +52,12 @@ class ExcursionCenterTest {
     }
 
     @Test
-    void should_call_expeditionary_catalogue_when_retrieving_expeditionaries() {
+    void should_call_expeditionary_catalogue_when_retrieving_expeditioners() {
         ExpeditionaryCatalogue expeditionaryCatalogue = mock(ExpeditionaryCatalogue.class);
         ExcursionCenter excursionCenter = new ExcursionCenter(null, expeditionaryCatalogue, null);
 
-        excursionCenter.retrieveExpeditionaries();
+        excursionCenter.retrieveExpeditioners();
 
-        verify(expeditionaryCatalogue).retrieveExpeditionaries();
+        verify(expeditionaryCatalogue).retrieveExpeditioners();
     }
 }

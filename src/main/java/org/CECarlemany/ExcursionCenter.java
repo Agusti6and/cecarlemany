@@ -42,7 +42,7 @@ public class ExcursionCenter {
         expeditionaryCatalogue.addExpeditionary(newExpeditionary);
     }
 
-    public List<Expeditionary> retrieveExpeditionaries() {
-        return expeditionaryCatalogue.retrieveExpeditionaries();
+    public List<Expeditionary> retrieveExpeditioners() {
+        return expeditionaryCatalogue.retrieveExpeditioners();
     }
 }

@@ -7,23 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryExpeditionaryCatalogue implements ExpeditionaryCatalogue {
-    private final List<Expeditionary> expeditionaries;
+    private final List<Expeditionary> expeditioners;
 
     public InMemoryExpeditionaryCatalogue() {
-        this.expeditionaries = new ArrayList<Expeditionary>();
+        this.expeditioners = new ArrayList<Expeditionary>();
     }
 
-    public InMemoryExpeditionaryCatalogue(List<Expeditionary> expeditionaries) {
-        this.expeditionaries = expeditionaries;
+    public InMemoryExpeditionaryCatalogue(List<Expeditionary> expeditioners) {
+        this.expeditioners = expeditioners;
     }
 
     @Override
     public void addExpeditionary(Expeditionary expectedExpeditionary) {
-        expeditionaries.add(expectedExpeditionary);
+        expeditioners.add(expectedExpeditionary);
     }
 
     @Override
-    public List<Expeditionary> retrieveExpeditionaries() {
-        return expeditionaries;
+    public List<Expeditionary> retrieveExpeditioners() {
+        return expeditioners;
     }
 }
