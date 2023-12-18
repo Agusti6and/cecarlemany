@@ -19,6 +19,6 @@ public class InMemoryExpeditionCatalogue implements ExpeditionCatalogue {
 
     @Override
     public List<Expedition> retrieveExpeditionsFromExpeditionaryID(String expeditionaryId) {
-        return null;
+        return expeditions.stream().filter(expedition -> expedition.expeditionaryID.contains(expeditionaryId)).toList();
     }
 }
