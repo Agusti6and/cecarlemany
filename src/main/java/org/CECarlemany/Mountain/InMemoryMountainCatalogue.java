@@ -23,4 +23,9 @@ public class InMemoryMountainCatalogue implements MountainCatalogue {
     public List<Mountain> retrieveMountains() {
         return mountains;
     }
+
+    @Override
+    public Mountain retrieveMountainByID(String mountainID) {
+        return mountains.stream().filter(mountain -> mountain.mountainID.contains(mountainID)).toList().get(0);
+    }
 }

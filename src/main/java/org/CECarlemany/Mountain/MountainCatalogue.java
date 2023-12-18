@@ -6,4 +6,6 @@ public interface MountainCatalogue {
     void addMountain(Mountain expectedMountain);
 
     List<Mountain> retrieveMountains();
+
+    Mountain retrieveMountainByID(String mountainID);
 }

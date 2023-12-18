@@ -26,7 +26,8 @@ public class Main {
             put(4, "Find expeditionary by ID");
             put(5, "Create mountain");
             put(6, "List mountains");
-            put(7, "Create expedition");
+            put(7, "Find mountain by ID");
+            put(8, "Create expedition");
             put(0, "Exit program");
         }};
 
@@ -46,11 +47,21 @@ public class Main {
                 case 4 -> getExpeditionaryByIDMenu(consoleLineScanner, excursionCenter);
                 case 5 -> createMountainMenu(consoleLineScanner, excursionCenter);
                 case 6 -> getAllMountainsMenu(excursionCenter);
-                case 7 -> createExpeditionMenu(consoleLineScanner, excursionCenter);
+                case 7 -> getMountainByIDMenu(consoleLineScanner, excursionCenter);
+                case 8 -> createExpeditionMenu(consoleLineScanner, excursionCenter);
                 case 0 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void getMountainByIDMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
+        System.out.println("Enter mountain ID:");
+        String mountainID = consoleLineScanner.next();
+
+        Mountain mountain = excursionCenter.retrieveMountainByID(mountainID);
+        MountainConsolePrinter mountainConsolePrinter = new MountainConsolePrinter(mountain);
+        mountainConsolePrinter.print();
     }
 
     private static void getExpeditionaryByIDMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {

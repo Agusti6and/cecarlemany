@@ -23,7 +23,7 @@ class InMemoryMountainCatalogueTest {
     }
 
     @Test
-    void should_call_retrieve_method_on_retrieveMountains() {
+    void should_retrieve_all_mountains_on_retrieveMountains() {
         List<Mountain> mountains = List.of(new Mountain(UUID.randomUUID().toString(), "Montseny", 1700, MountainDifficulty.MEDIUM));
         InMemoryMountainCatalogue inMemoryMountainCatalogue = new InMemoryMountainCatalogue(mountains);
 
@@ -32,4 +32,16 @@ class InMemoryMountainCatalogueTest {
         assertEquals(mountains, foundMountains);
     }
 
+    @Test
+    void should_retrieve_mountain_on_retrieveMountainByID() {
+        String mountainIDToLookFor = UUID.randomUUID().toString();
+        Mountain firstMountain = new Mountain(UUID.randomUUID().toString(), "Montseny", 1700, MountainDifficulty.MEDIUM);
+        Mountain secondMountain = new Mountain(mountainIDToLookFor, "Montseny", 1700, MountainDifficulty.MEDIUM);
+        List<Mountain> mountains = List.of(firstMountain, secondMountain);
+        InMemoryMountainCatalogue inMemoryMountainCatalogue = new InMemoryMountainCatalogue(mountains);
+
+        Mountain foundMountain = inMemoryMountainCatalogue.retrieveMountainByID(mountainIDToLookFor);
+
+        assertEquals(secondMountain, foundMountain);
+    }
 }

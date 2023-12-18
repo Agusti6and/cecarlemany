@@ -69,4 +69,8 @@ public class ExcursionCenter {
     public Expeditionary retrieveExpeditionaryByID(String expeditionaryID) {
         return expeditionaryCatalogue.retrieveExpeditionaryByID(expeditionaryID);
     }
+
+    public Mountain retrieveMountainByID(String mountainID) {
+        return mountainCatalogue.retrieveMountainByID(mountainID);
+    }
 }

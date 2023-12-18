@@ -119,4 +119,15 @@ class ExcursionCenterTest {
 
         verify(expeditionaryCatalogue).retrieveExpeditionaryByID(expeditionaryID);
     }
+
+    @Test
+    void should_call_mountain_catalogue_when_retrieving_mountain_by_id() {
+        MountainCatalogue mountainCatalogue = mock(MountainCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(mountainCatalogue, null, null);
+        String mountainID = UUID.randomUUID().toString();
+
+        excursionCenter.retrieveMountainByID(mountainID);
+
+        verify(mountainCatalogue).retrieveMountainByID(mountainID);
+    }
 }
