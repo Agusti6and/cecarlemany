@@ -1,5 +1,15 @@
 package org.CECarlemany;
 
+import org.CECarlemany.Expedition.Expedition;
+import org.CECarlemany.Expedition.ExpeditionCatalogue;
+import org.CECarlemany.Expedition.InMemoryExpeditionCatalogue;
+import org.CECarlemany.Expeditionary.Expeditionary;
+import org.CECarlemany.Expeditionary.ExpeditionaryCatalogue;
+import org.CECarlemany.Expeditionary.InMemoryExpeditionaryCatalogue;
+import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
+import org.CECarlemany.Mountain.Mountain;
+import org.CECarlemany.Mountain.MountainCatalogue;
+import org.CECarlemany.Mountain.MountainDifficulty;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -36,6 +46,7 @@ class ExcursionCenterTest {
         List<Expedition> foundExpeditions = excursionCenter.retrieveExpeditionsFromExpeditionaryID(expeditionaryID);
 
         // Then
+        assertThat(foundExpeditions).hasSize(List.of(newExpedition).size());
         assertThat(foundExpeditions).contains(newExpedition);
     }
 

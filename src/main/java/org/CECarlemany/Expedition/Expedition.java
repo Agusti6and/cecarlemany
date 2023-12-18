@@ -1,14 +1,14 @@
-package org.CECarlemany;
+package org.CECarlemany.Expedition;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Expedition {
-    private final String expeditionID;
-    private final String expeditionName;
-    private final LocalDateTime expeditionDate;
-    private final String mountainID;
-    private final List<String> expeditionaryID;
+    protected final String expeditionID;
+    protected final String expeditionName;
+    protected final LocalDateTime expeditionDate;
+    protected final String mountainID;
+    protected final List<String> expeditionaryID;
 
     public Expedition(String expeditionID, String expeditionName, LocalDateTime expeditionDate, String mountainID, List<String> expeditionaryID) {
         this.expeditionID = expeditionID;

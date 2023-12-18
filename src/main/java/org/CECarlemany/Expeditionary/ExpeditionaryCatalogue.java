@@ -1,4 +1,4 @@
-package org.CECarlemany;
+package org.CECarlemany.Expeditionary;
 
 public interface ExpeditionaryCatalogue {
 }

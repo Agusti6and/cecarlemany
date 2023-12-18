@@ -1,11 +1,11 @@
-package org.CECarlemany;
+package org.CECarlemany.Expeditionary;
 
 import java.time.LocalDateTime;
 
 public class Expeditionary {
-    private final String expeditionaryID;
-    private final String expeditionaryName;
-    private final LocalDateTime signedUpDate;
+    protected final String expeditionaryID;
+    protected final String expeditionaryName;
+    protected final LocalDateTime signedUpDate;
 
     public Expeditionary(String expeditionaryID, String expeditionaryName) {
         this.expeditionaryID = expeditionaryID;

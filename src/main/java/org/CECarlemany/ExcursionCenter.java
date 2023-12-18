@@ -1,5 +1,10 @@
 package org.CECarlemany;
 
+import org.CECarlemany.Expedition.Expedition;
+import org.CECarlemany.Expedition.ExpeditionCatalogue;
+import org.CECarlemany.Expeditionary.ExpeditionaryCatalogue;
+import org.CECarlemany.Mountain.MountainCatalogue;
+
 import java.util.ArrayList;
 import java.util.List;
 

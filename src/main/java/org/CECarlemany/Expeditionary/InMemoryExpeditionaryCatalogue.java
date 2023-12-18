@@ -1,4 +1,7 @@
-package org.CECarlemany;
+package org.CECarlemany.Expeditionary;
+
+import org.CECarlemany.Expeditionary.Expeditionary;
+import org.CECarlemany.Expeditionary.ExpeditionaryCatalogue;
 
 import java.util.List;
 

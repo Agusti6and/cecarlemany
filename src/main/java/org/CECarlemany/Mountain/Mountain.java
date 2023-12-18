@@ -1,10 +1,10 @@
-package org.CECarlemany;
+package org.CECarlemany.Mountain;
 
 public class Mountain {
-    private final String mountainID;
-    private final String mountainName;
-    private final Integer mountainHeight;
-    private final MountainDifficulty mountainDifficulty;
+    protected final String mountainID;
+    protected final String mountainName;
+    protected final Integer mountainHeight;
+    protected final MountainDifficulty mountainDifficulty;
 
     public Mountain(String mountainID, String mountainName, Integer mountainHeight, MountainDifficulty mountainDifficulty) {
         this.mountainID = mountainID;
