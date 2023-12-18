@@ -1,5 +1,6 @@
 package org.CECarlemany;
 
+import org.CECarlemany.Expedition.Expedition;
 import org.CECarlemany.Expedition.ExpeditionCatalogue;
 import org.CECarlemany.Expeditionary.*;
 import org.CECarlemany.Mountain.Mountain;
@@ -7,6 +8,8 @@ import org.CECarlemany.Mountain.MountainCatalogue;
 import org.CECarlemany.Mountain.MountainDifficulty;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -87,5 +90,22 @@ class ExcursionCenterTest {
         excursionCenter.retrieveMountains();
 
         verify(mountainCatalogue).retrieveMountains();
+    }
+
+    @Test
+    void should_call_expedition_catalogue_when_creating_expedition() {
+        ExpeditionCatalogue expeditionCatalogue = mock(ExpeditionCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(null, null, expeditionCatalogue);
+        String expeditionID = UUID.randomUUID().toString();
+        String expeditionName = "Montseny";
+        String expeditionaryID = UUID.randomUUID().toString();
+        String mountainID = UUID.randomUUID().toString();
+        LocalDateTime expeditionDate = LocalDateTime.now();
+        String expeditionDateAsString = expeditionDate.toString();
+
+        excursionCenter.createExpedition(expeditionID, expeditionName, expeditionDateAsString, expeditionaryID, mountainID);
+
+        Expedition expectedExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, List.of(expeditionaryID));
+        verify(expeditionCatalogue).addExpedition(expectedExpedition);
     }
 }

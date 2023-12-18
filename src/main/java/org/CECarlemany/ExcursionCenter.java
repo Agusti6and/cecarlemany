@@ -9,8 +9,10 @@ import org.CECarlemany.Mountain.Mountain;
 import org.CECarlemany.Mountain.MountainCatalogue;
 import org.CECarlemany.Mountain.MountainDifficulty;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ExcursionCenter {
     private final MountainCatalogue mountainCatalogue;
@@ -56,5 +58,11 @@ public class ExcursionCenter {
 
     public List<Mountain> retrieveMountains() {
         return mountainCatalogue.retrieveMountains();
+    }
+
+    public void createExpedition(String expeditionID, String expeditionName, String expeditionDate, String expeditionMountainID, String expeditionExpeditionaryID) {
+        LocalDateTime expeditionDateLocalDateTime = LocalDateTime.parse(expeditionDate);
+        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDateLocalDateTime, expeditionMountainID, List.of(expeditionExpeditionaryID));
+        expeditionCatalogue.addExpedition(newExpedition);
     }
 }

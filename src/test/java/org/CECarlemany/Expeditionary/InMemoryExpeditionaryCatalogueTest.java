@@ -23,7 +23,7 @@ class InMemoryExpeditionaryCatalogueTest {
     }
 
     @Test
-    void retrieveExpeditioners() {
+    void should_retrieve_all_expeditioners() {
         List<Expeditionary> expeditioners = List.of(new Alpinist(UUID.randomUUID().toString(), "Joan"));
         InMemoryExpeditionaryCatalogue inMemoryExpeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(expeditioners);
 

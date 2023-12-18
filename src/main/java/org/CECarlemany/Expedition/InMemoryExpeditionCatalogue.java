@@ -21,4 +21,9 @@ public class InMemoryExpeditionCatalogue implements ExpeditionCatalogue {
     public List<Expedition> retrieveExpeditionsFromExpeditionaryID(String expeditionaryId) {
         return expeditions.stream().filter(expedition -> expedition.expeditionaryID.contains(expeditionaryId)).toList();
     }
+
+    @Override
+    public void addExpedition(Expedition newExpedition) {
+        expeditions.add(newExpedition);
+    }
 }

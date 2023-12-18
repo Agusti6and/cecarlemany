@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class InMemoryExpeditionCatalogueTest {
 
     @Test
-    void retrieveExpeditionsFromExpeditionaryID() {
+    void should_retrieve_expeditions_of_an_expeditionary() {
         String firstExpeditionaryId = UUID.randomUUID().toString();
         String secondExpeditionaryId = UUID.randomUUID().toString();
         Expedition firstExpedition = new Expedition(UUID.randomUUID().toString(), "Excursió al Montseny", null, null, List.of(firstExpeditionaryId));
@@ -20,5 +22,16 @@ class InMemoryExpeditionCatalogueTest {
         List<Expedition> foundExpeditions = expeditionCatalogue.retrieveExpeditionsFromExpeditionaryID(firstExpeditionaryId);
 
         assertEquals(List.of(firstExpedition), foundExpeditions);
+    }
+
+    @Test
+    void should_call_add_method_on_addExpedition() {
+        List expeditions = mock(List.class);
+        InMemoryExpeditionCatalogue inMemoryExpeditionCatalogue = new InMemoryExpeditionCatalogue(expeditions);
+        Expedition expedition = new Expedition(UUID.randomUUID().toString(), "Excursió al Montseny", null, null, List.of(UUID.randomUUID().toString()));
+
+        inMemoryExpeditionCatalogue.addExpedition(expedition);
+
+        verify(expeditions).add(expedition);
     }
 }
