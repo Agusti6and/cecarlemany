@@ -2,6 +2,7 @@ package org.CECarlemany.Expedition;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,5 +44,17 @@ class InMemoryExpeditionCatalogueTest {
         List<Expedition> foundExpeditions = inMemoryExpeditionCatalogue.retrieveExpeditions();
 
         assertEquals(expeditions, foundExpeditions);
+    }
+
+    @Test
+    void should_retrieve_expedition_by_id() {
+        String expeditionId = UUID.randomUUID().toString();
+        Expedition expectedExpedition = new Expedition(expeditionId, "Excursió al Montseny", null, null, List.of(UUID.randomUUID().toString()));
+        List<Expedition> expeditions = List.of(expectedExpedition);
+        InMemoryExpeditionCatalogue inMemoryExpeditionCatalogue = new InMemoryExpeditionCatalogue(expeditions);
+
+        Expedition foundExpedition = inMemoryExpeditionCatalogue.retrieveExpeditionByID(expeditionId);
+
+        assertEquals(expectedExpedition, foundExpedition);
     }
 }

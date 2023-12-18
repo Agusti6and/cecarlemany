@@ -12,7 +12,6 @@ import org.CECarlemany.Mountain.MountainDifficulty;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ExcursionCenter {
     private final MountainCatalogue mountainCatalogue;
@@ -62,7 +61,7 @@ public class ExcursionCenter {
 
     public void createExpedition(String expeditionID, String expeditionName, String expeditionDate, String expeditionMountainID, String expeditionExpeditionaryID) {
         LocalDateTime expeditionDateLocalDateTime = LocalDateTime.parse(expeditionDate);
-        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDateLocalDateTime, expeditionMountainID, List.of(expeditionExpeditionaryID));
+        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDateLocalDateTime, expeditionMountainID, new ArrayList<String>(List.of(expeditionExpeditionaryID)));
         expeditionCatalogue.addExpedition(newExpedition);
     }
 
@@ -76,5 +75,17 @@ public class ExcursionCenter {
 
     public List<Expedition> retrieveExpeditions() {
         return expeditionCatalogue.retrieveExpeditions();
+    }
+
+    public Expedition retrieveExpeditionByID(String expeditionID) {
+        return expeditionCatalogue.retrieveExpeditionByID(expeditionID);
+    }
+
+    public Expedition signUpExpeditionaryIntoExpedition(String expeditionID, String expeditionaryID) {
+        Expedition expedition = expeditionCatalogue.retrieveExpeditionByID(expeditionID);
+        if (expeditionaryCatalogue.existsExpeditionary(expeditionaryID)) {
+            expedition.addExpeditionary(expeditionaryID);
+        }
+        return expedition;
     }
 }

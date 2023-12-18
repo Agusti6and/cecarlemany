@@ -31,4 +31,9 @@ public class InMemoryExpeditionaryCatalogue implements ExpeditionaryCatalogue {
     public Expeditionary retrieveExpeditionaryByID(String expeditionaryID) {
         return expeditioners.stream().filter(expeditionary -> expeditionary.expeditionaryID.contains(expeditionaryID)).toList().get(0);
     }
+
+    @Override
+    public boolean existsExpeditionary(String expeditionaryID) {
+        return expeditioners.stream().anyMatch(expeditionary -> expeditionary.expeditionaryID.contains(expeditionaryID));
+    }
 }

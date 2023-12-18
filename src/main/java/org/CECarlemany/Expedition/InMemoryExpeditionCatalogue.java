@@ -1,8 +1,5 @@
 package org.CECarlemany.Expedition;
 
-import org.CECarlemany.Expedition.Expedition;
-import org.CECarlemany.Expedition.ExpeditionCatalogue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class InMemoryExpeditionCatalogue implements ExpeditionCatalogue {
 
     @Override
     public List<Expedition> retrieveExpeditionsFromExpeditionaryID(String expeditionaryId) {
-        return expeditions.stream().filter(expedition -> expedition.expeditionaryID.contains(expeditionaryId)).toList();
+        return expeditions.stream().filter(expedition -> expedition.expeditioners.contains(expeditionaryId)).toList();
     }
 
     @Override
@@ -30,5 +27,10 @@ public class InMemoryExpeditionCatalogue implements ExpeditionCatalogue {
     @Override
     public List<Expedition> retrieveExpeditions() {
         return expeditions;
+    }
+
+    @Override
+    public Expedition retrieveExpeditionByID(String expeditionID) {
+        return expeditions.stream().filter(expedition -> expedition.expeditionID.equals(expeditionID)).findFirst().orElse(null);
     }
 }

@@ -29,6 +29,8 @@ public class Main {
             put(7, "Find mountain by ID");
             put(8, "Create expedition");
             put(9, "List expeditions");
+            put(10, "Find expedition by ID");
+            put(11, "Sign up expeditionary into expedition");
             put(0, "Exit program");
         }};
 
@@ -51,10 +53,34 @@ public class Main {
                 case 7 -> getMountainByIDMenu(consoleLineScanner, excursionCenter);
                 case 8 -> createExpeditionMenu(consoleLineScanner, excursionCenter);
                 case 9 -> getAllExpeditionsMenu(excursionCenter);
+                case 10 -> getExpeditionByIDMenu(consoleLineScanner, excursionCenter);
+                case 11 -> signUpExpeditionaryIntoExpeditionMenu(consoleLineScanner, excursionCenter);
                 case 0 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void signUpExpeditionaryIntoExpeditionMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
+        System.out.println("Enter expedition ID:");
+        String expeditionID = consoleLineScanner.next();
+
+        System.out.println("Enter expeditionary ID:");
+        String expeditionaryID = consoleLineScanner.next();
+
+        Expedition updatedExpedition = excursionCenter.signUpExpeditionaryIntoExpedition(expeditionID, expeditionaryID);
+
+        ExpeditionConsolePrinter expeditionConsolePrinter = new ExpeditionConsolePrinter(updatedExpedition);
+        expeditionConsolePrinter.print();
+    }
+
+    private static void getExpeditionByIDMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
+        System.out.println("Enter expedition ID:");
+        String expeditionID = consoleLineScanner.next();
+
+        Expedition expedition = excursionCenter.retrieveExpeditionByID(expeditionID);
+        ExpeditionConsolePrinter expeditionConsolePrinter = new ExpeditionConsolePrinter(expedition);
+        expeditionConsolePrinter.print();
     }
 
     private static void getAllExpeditionsMenu(ExcursionCenter excursionCenter) {

@@ -8,4 +8,6 @@ public interface ExpeditionCatalogue {
     void addExpedition(Expedition newExpedition);
 
     List<Expedition> retrieveExpeditions();
+
+    Expedition retrieveExpeditionByID(String expeditionID);
 }

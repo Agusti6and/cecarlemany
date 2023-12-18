@@ -9,12 +9,12 @@ import org.CECarlemany.Mountain.MountainDifficulty;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class ExcursionCenterTest {
 
@@ -105,7 +105,7 @@ class ExcursionCenterTest {
 
         excursionCenter.createExpedition(expeditionID, expeditionName, expeditionDateAsString, expeditionaryID, mountainID);
 
-        Expedition expectedExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, List.of(expeditionaryID));
+        Expedition expectedExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, new ArrayList<String>(List.of(expeditionaryID)));
         verify(expeditionCatalogue).addExpedition(expectedExpedition);
     }
 
@@ -139,5 +139,35 @@ class ExcursionCenterTest {
         excursionCenter.retrieveExpeditions();
 
         verify(expeditionCatalogue).retrieveExpeditions();
+    }
+
+    @Test
+    void should_call_expedition_catalogue_when_retrieving_expedition_by_id() {
+        ExpeditionCatalogue expeditionCatalogue = mock(ExpeditionCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(null, null, expeditionCatalogue);
+        String expeditionID = UUID.randomUUID().toString();
+
+        excursionCenter.retrieveExpeditionByID(expeditionID);
+
+        verify(expeditionCatalogue).retrieveExpeditionByID(expeditionID);
+    }
+
+    @Test
+    void should_call_expedition_and_expeditionary_catalogues_when_signing_up_expeditionary_into_expedition() {
+        ExpeditionCatalogue expeditionCatalogue = mock(ExpeditionCatalogue.class);
+        String initialExpeditionID = UUID.randomUUID().toString();
+        Expedition initialExpedition = new Expedition(initialExpeditionID, "expeditionName", LocalDateTime.now(), "mountainID", new ArrayList<String>());
+        when(expeditionCatalogue.retrieveExpeditionByID(initialExpeditionID)).thenReturn(initialExpedition);
+
+        ExpeditionaryCatalogue expeditionaryCatalogue = mock(ExpeditionaryCatalogue.class);
+        String existingExpeditionaryID = UUID.randomUUID().toString();
+        when(expeditionaryCatalogue.existsExpeditionary(existingExpeditionaryID)).thenReturn(true);
+
+        ExcursionCenter excursionCenter = new ExcursionCenter(null, expeditionaryCatalogue, expeditionCatalogue);
+
+        excursionCenter.signUpExpeditionaryIntoExpedition(initialExpeditionID, existingExpeditionaryID);
+
+        verify(expeditionCatalogue).retrieveExpeditionByID(initialExpeditionID);
+        verify(expeditionaryCatalogue).existsExpeditionary(existingExpeditionaryID);
     }
 }

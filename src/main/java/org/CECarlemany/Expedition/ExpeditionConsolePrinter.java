@@ -1,7 +1,6 @@
 package org.CECarlemany.Expedition;
 
 import org.CECarlemany.ConsolePrinter;
-import org.CECarlemany.Expedition.Expedition;
 
 public class ExpeditionConsolePrinter implements ConsolePrinter {
 
@@ -17,7 +16,7 @@ public class ExpeditionConsolePrinter implements ConsolePrinter {
         System.out.println("Expedition name: " + expedition.expeditionName);
         System.out.println("Expedition date: " + expedition.expeditionDate);
         System.out.println("Mountain ID: " + expedition.mountainID);
-        for (String expeditionaryID : expedition.expeditionaryID) {
+        for (String expeditionaryID : expedition.expeditioners) {
             System.out.println("    Expeditionary ID: " + expeditionaryID);
         }
     }

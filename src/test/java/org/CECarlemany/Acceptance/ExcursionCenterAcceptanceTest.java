@@ -15,6 +15,7 @@ import org.CECarlemany.Mountain.MountainDifficulty;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,7 +40,7 @@ class ExcursionCenterAcceptanceTest {
         String expeditionID = UUID.randomUUID().toString();
         String expeditionName = "Excursió al Montseny";
         LocalDateTime expeditionDate = LocalDateTime.of(2021, 5, 1, 10, 0);
-        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, List.of(expeditionaryID));
+        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, new ArrayList<String>(List.of(expeditionaryID)));
         ExpeditionCatalogue expeditionCatalogue = new InMemoryExpeditionCatalogue(List.of(newExpedition));
 
         ExcursionCenter excursionCenter = new ExcursionCenter(mountainCatalogue, expeditionaryCatalogue, expeditionCatalogue);
@@ -50,6 +51,30 @@ class ExcursionCenterAcceptanceTest {
         // Then
         assertThat(foundExpeditions).hasSize(List.of(newExpedition).size());
         assertThat(foundExpeditions).contains(newExpedition);
+    }
+
+    @Test
+    void should_sign_up_expeditioners_in_expedition() {
+        MountainCatalogue mountainCatalogue = new InMemoryMountainCatalogue(List.of());
+
+        String firstExpeditionaryID = UUID.randomUUID().toString();
+        Expeditionary firstExpeditionary = new Alpinist(firstExpeditionaryID, "Joan");
+        String secondExpeditionaryID = UUID.randomUUID().toString();
+        Expeditionary secondExpeditionary = new Alpinist(secondExpeditionaryID, "Pedro");
+        ExpeditionaryCatalogue expeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(List.of(firstExpeditionary, secondExpeditionary));
+
+        String expeditionID = UUID.randomUUID().toString();
+        String expeditionName = "Excursió al Montseny";
+        LocalDateTime expeditionDate = LocalDateTime.now();
+        ArrayList<String> expeditioners = new ArrayList<>(List.of(firstExpeditionaryID));
+        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, null, expeditioners);
+        ExpeditionCatalogue expeditionCatalogue = new InMemoryExpeditionCatalogue(List.of(newExpedition));
+
+        ExcursionCenter excursionCenter = new ExcursionCenter(mountainCatalogue, expeditionaryCatalogue, expeditionCatalogue);
+
+        Expedition expedition = excursionCenter.signUpExpeditionaryIntoExpedition(expeditionID, secondExpeditionaryID);
+
+        assertThat(expeditioners).contains(firstExpeditionaryID, secondExpeditionaryID);
     }
 
 }

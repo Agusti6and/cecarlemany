@@ -9,14 +9,14 @@ public class Expedition {
     protected final String expeditionName;
     protected final LocalDateTime expeditionDate;
     protected final String mountainID;
-    protected final List<String> expeditionaryID;
+    protected final List<String> expeditioners;
 
-    public Expedition(String expeditionID, String expeditionName, LocalDateTime expeditionDate, String mountainID, List<String> expeditionaryID) {
+    public Expedition(String expeditionID, String expeditionName, LocalDateTime expeditionDate, String mountainID, List<String> expeditioners) {
         this.expeditionID = expeditionID;
         this.expeditionName = expeditionName;
         this.expeditionDate = expeditionDate;
         this.mountainID = mountainID;
-        this.expeditionaryID = expeditionaryID;
+        this.expeditioners = expeditioners;
     }
 
     @Override
@@ -25,5 +25,9 @@ public class Expedition {
         if (o == null || getClass() != o.getClass()) return false;
         Expedition that = (Expedition) o;
         return Objects.equals(expeditionID, that.expeditionID);
+    }
+
+    public void addExpeditionary(String expeditionary) {
+        expeditioners.add(expeditionary);
     }
 }

@@ -8,4 +8,6 @@ public interface ExpeditionaryCatalogue {
     List<Expeditionary> retrieveExpeditioners();
 
     Expeditionary retrieveExpeditionaryByID(String expeditionaryID);
+
+    boolean existsExpeditionary(String expeditionaryID);
 }
