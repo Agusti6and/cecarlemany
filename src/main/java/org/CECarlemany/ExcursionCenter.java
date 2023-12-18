@@ -3,8 +3,7 @@ package org.CECarlemany;
 import org.CECarlemany.Expedition.Expedition;
 import org.CECarlemany.Expedition.ExpeditionCatalogue;
 import org.CECarlemany.Expedition.InMemoryExpeditionCatalogue;
-import org.CECarlemany.Expeditionary.ExpeditionaryCatalogue;
-import org.CECarlemany.Expeditionary.InMemoryExpeditionaryCatalogue;
+import org.CECarlemany.Expeditionary.*;
 import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
 import org.CECarlemany.Mountain.MountainCatalogue;
 
@@ -30,5 +29,16 @@ public class ExcursionCenter {
 
     public List<Expedition> retrieveExpeditionsFromExpeditionaryID(String expeditionaryID) {
         return expeditionCatalogue.retrieveExpeditionsFromExpeditionaryID(expeditionaryID);
+    }
+
+    public void createExpeditionary(String expeditionaryType, String expeditionaryID, String expeditionaryName) {
+        Expeditionary newExpeditionary = null;
+        if (expeditionaryType.equals(ExpeditionaryType.ALPINIST.name())) {
+            newExpeditionary = new Alpinist(expeditionaryID, expeditionaryName);
+        }
+        if (expeditionaryType.equals(ExpeditionaryType.MEDIC.name())) {
+            newExpeditionary = new Medic(expeditionaryID, expeditionaryName);
+        }
+        expeditionaryCatalogue.addExpeditionary(newExpeditionary);
     }
 }

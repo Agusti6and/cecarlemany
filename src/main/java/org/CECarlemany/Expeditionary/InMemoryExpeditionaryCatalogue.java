@@ -16,4 +16,9 @@ public class InMemoryExpeditionaryCatalogue implements ExpeditionaryCatalogue {
     public InMemoryExpeditionaryCatalogue(List<Expeditionary> expeditionaries) {
         this.expeditionaries = expeditionaries;
     }
+
+    @Override
+    public void addExpeditionary(Expeditionary expectedExpeditionary) {
+        expeditionaries.add(expectedExpeditionary);
+    }
 }

@@ -2,6 +2,7 @@ package org.CECarlemany;
 
 import org.CECarlemany.Expedition.Expedition;
 import org.CECarlemany.Expedition.ExpeditionConsolePrinter;
+import org.CECarlemany.Expeditionary.ExpeditionaryType;
 import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class Main {
 
         Map<Integer, String> mainMenuOptions = new HashMap<>(){{
             put(1, "Get expeditions of an expeditionary");
+            put(2, "Create expeditionary");
             put(5, "Exit program");
         }};
 
@@ -29,10 +31,33 @@ public class Main {
 
             switch (selectedOption) {
                 case 1 -> getExpeditionsByExpeditionaryIDMenu(consoleLineScanner, excursionCenter);
+                case 2 -> createExpeditionaryMenu(consoleLineScanner, excursionCenter);
                 case 5 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void createExpeditionaryMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
+        Map<Integer, String> expeditionaryTypeMenuOptions = new HashMap<>(){{
+            put(1, ExpeditionaryType.ALPINIST.name());
+            put(2, ExpeditionaryType.MEDIC.name());
+        }};
+        System.out.println("Select Expeditionary type:");
+        for (Map.Entry<Integer, String> entry : expeditionaryTypeMenuOptions.entrySet()) {
+            System.out.printf("%d - %s\n", entry.getKey(), entry.getValue());
+        }
+
+        int selectedOption = consoleLineScanner.nextInt();
+        String expeditionaryType = expeditionaryTypeMenuOptions.get(selectedOption);
+
+        System.out.println("Enter expeditionary ID:");
+        String expeditionaryID = consoleLineScanner.next();
+
+        System.out.println("Enter expeditionary name:");
+        String expeditionaryName = consoleLineScanner.next();
+
+        excursionCenter.createExpeditionary(expeditionaryType, expeditionaryID, expeditionaryName);
     }
 
     private static void getExpeditionsByExpeditionaryIDMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {

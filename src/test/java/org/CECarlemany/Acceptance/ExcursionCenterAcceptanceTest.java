@@ -4,6 +4,7 @@ import org.CECarlemany.ExcursionCenter;
 import org.CECarlemany.Expedition.Expedition;
 import org.CECarlemany.Expedition.ExpeditionCatalogue;
 import org.CECarlemany.Expedition.InMemoryExpeditionCatalogue;
+import org.CECarlemany.Expeditionary.Alpinist;
 import org.CECarlemany.Expeditionary.Expeditionary;
 import org.CECarlemany.Expeditionary.ExpeditionaryCatalogue;
 import org.CECarlemany.Expeditionary.InMemoryExpeditionaryCatalogue;
@@ -32,7 +33,7 @@ class ExcursionCenterAcceptanceTest {
 
         String expeditionaryID = UUID.randomUUID().toString();
         String expeditionaryName = "Joan";
-        Expeditionary newExpeditionary = new Expeditionary(expeditionaryID, expeditionaryName);
+        Expeditionary newExpeditionary = new Alpinist(expeditionaryID, expeditionaryName);
         ExpeditionaryCatalogue expeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(List.of(newExpeditionary));
 
         String expeditionID = UUID.randomUUID().toString();
