@@ -18,4 +18,9 @@ public class InMemoryMountainCatalogue implements MountainCatalogue {
     public void addMountain(Mountain expectedMountain) {
         mountains.add(expectedMountain);
     }
+
+    @Override
+    public List<Mountain> retrieveMountains() {
+        return mountains;
+    }
 }

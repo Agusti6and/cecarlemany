@@ -22,4 +22,14 @@ class InMemoryMountainCatalogueTest {
         verify(mountains).add(mountain);
     }
 
+    @Test
+    void should_call_retrieve_method_on_retrieveMountains() {
+        List<Mountain> mountains = List.of(new Mountain(UUID.randomUUID().toString(), "Montseny", 1700, MountainDifficulty.MEDIUM));
+        InMemoryMountainCatalogue inMemoryMountainCatalogue = new InMemoryMountainCatalogue(mountains);
+
+        List<Mountain> foundMountains = inMemoryMountainCatalogue.retrieveMountains();
+
+        assertEquals(mountains, foundMountains);
+    }
+
 }

@@ -6,6 +6,8 @@ import org.CECarlemany.Expeditionary.Expeditionary;
 import org.CECarlemany.Expeditionary.ExpeditionaryConsolePrinter;
 import org.CECarlemany.Expeditionary.ExpeditionaryType;
 import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
+import org.CECarlemany.Mountain.Mountain;
+import org.CECarlemany.Mountain.MountainConsolePrinter;
 import org.CECarlemany.Mountain.MountainDifficulty;
 
 import java.util.HashMap;
@@ -22,6 +24,7 @@ public class Main {
             put(2, "Create expeditionary");
             put(3, "List expeditioners");
             put(4, "Create mountain");
+            put(5, "List mountains");
             put(0, "Exit program");
         }};
 
@@ -39,10 +42,19 @@ public class Main {
                 case 2 -> createExpeditionaryMenu(consoleLineScanner, excursionCenter);
                 case 3 -> getAllExpeditionersMenu(excursionCenter);
                 case 4 -> createMountainMenu(consoleLineScanner, excursionCenter);
+                case 5 -> getAllMountainsMenu(excursionCenter);
                 case 0 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void getAllMountainsMenu(ExcursionCenter excursionCenter) {
+        List<Mountain> mountains = excursionCenter.retrieveMountains();
+        for (Mountain mountain : mountains) {
+            MountainConsolePrinter mountainConsolePrinter = new MountainConsolePrinter(mountain);
+            mountainConsolePrinter.print();
+        }
     }
 
     private static void createMountainMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {

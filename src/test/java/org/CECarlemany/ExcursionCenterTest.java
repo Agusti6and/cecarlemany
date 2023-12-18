@@ -78,4 +78,14 @@ class ExcursionCenterTest {
         Mountain expectedMountain = new Mountain(mountainID, mountainName, mountainHeight, MountainDifficulty.MEDIUM);
         verify(mountainCatalogue).addMountain(expectedMountain);
     }
+
+    @Test
+    void should_call_mountain_catalogue_when_retrieving_mountains() {
+        MountainCatalogue mountainCatalogue = mock(MountainCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(mountainCatalogue, null, null);
+
+        excursionCenter.retrieveMountains();
+
+        verify(mountainCatalogue).retrieveMountains();
+    }
 }

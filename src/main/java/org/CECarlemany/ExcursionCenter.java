@@ -53,4 +53,8 @@ public class ExcursionCenter {
         Mountain newMountain = new Mountain(mountainID, mountainName, mountainHeight, mountainDifficultyEnum);
         mountainCatalogue.addMountain(newMountain);
     }
+
+    public List<Mountain> retrieveMountains() {
+        return mountainCatalogue.retrieveMountains();
+    }
 }
