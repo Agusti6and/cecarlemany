@@ -6,6 +6,7 @@ import org.CECarlemany.Expeditionary.Expeditionary;
 import org.CECarlemany.Expeditionary.ExpeditionaryConsolePrinter;
 import org.CECarlemany.Expeditionary.ExpeditionaryType;
 import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
+import org.CECarlemany.Mountain.MountainDifficulty;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,8 @@ public class Main {
             put(1, "Get expeditions of an expeditionary");
             put(2, "Create expeditionary");
             put(3, "List expeditioners");
-            put(5, "Exit program");
+            put(4, "Create mountain");
+            put(0, "Exit program");
         }};
 
         Scanner consoleLineScanner = new Scanner(System.in);
@@ -36,10 +38,37 @@ public class Main {
                 case 1 -> getExpeditionsByExpeditionaryIDMenu(consoleLineScanner, excursionCenter);
                 case 2 -> createExpeditionaryMenu(consoleLineScanner, excursionCenter);
                 case 3 -> getAllExpeditionersMenu(excursionCenter);
-                case 5 -> System.exit(0);
+                case 4 -> createMountainMenu(consoleLineScanner, excursionCenter);
+                case 0 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void createMountainMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
+        System.out.println("Enter mountain ID:");
+        String mountainID = consoleLineScanner.next();
+
+        System.out.println("Enter mountain name:");
+        String mountainName = consoleLineScanner.next();
+
+        System.out.println("Enter mountain height:");
+        Integer mountainHeight = consoleLineScanner.nextInt();
+
+        Map<Integer, String> mountainDifficultyMenuOptions = new HashMap<>() {{
+            put(1, MountainDifficulty.LOW.name());
+            put(2, MountainDifficulty.MEDIUM.name());
+            put(3, MountainDifficulty.HIGH.name());
+        }};
+        System.out.println("Select Mountain difficulty:");
+        for (Map.Entry<Integer, String> entry : mountainDifficultyMenuOptions.entrySet()) {
+            System.out.printf("%d - %s\n", entry.getKey(), entry.getValue());
+        }
+
+        int selectedOption = consoleLineScanner.nextInt();
+        String mountainDifficulty = mountainDifficultyMenuOptions.get(selectedOption);
+
+        excursionCenter.createMountain(mountainID, mountainName, mountainHeight, mountainDifficulty);
     }
 
     private static void getAllExpeditionersMenu(ExcursionCenter excursionCenter) {

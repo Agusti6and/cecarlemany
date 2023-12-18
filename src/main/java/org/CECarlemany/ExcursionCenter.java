@@ -5,7 +5,9 @@ import org.CECarlemany.Expedition.ExpeditionCatalogue;
 import org.CECarlemany.Expedition.InMemoryExpeditionCatalogue;
 import org.CECarlemany.Expeditionary.*;
 import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
+import org.CECarlemany.Mountain.Mountain;
 import org.CECarlemany.Mountain.MountainCatalogue;
+import org.CECarlemany.Mountain.MountainDifficulty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +46,11 @@ public class ExcursionCenter {
 
     public List<Expeditionary> retrieveExpeditioners() {
         return expeditionaryCatalogue.retrieveExpeditioners();
+    }
+
+    public void createMountain(String mountainID, String mountainName, Integer mountainHeight, String mountainDifficulty) {
+        MountainDifficulty mountainDifficultyEnum = MountainDifficulty.valueOf(mountainDifficulty);
+        Mountain newMountain = new Mountain(mountainID, mountainName, mountainHeight, mountainDifficultyEnum);
+        mountainCatalogue.addMountain(newMountain);
     }
 }

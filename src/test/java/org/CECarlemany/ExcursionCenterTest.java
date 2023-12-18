@@ -2,6 +2,9 @@ package org.CECarlemany;
 
 import org.CECarlemany.Expedition.ExpeditionCatalogue;
 import org.CECarlemany.Expeditionary.*;
+import org.CECarlemany.Mountain.Mountain;
+import org.CECarlemany.Mountain.MountainCatalogue;
+import org.CECarlemany.Mountain.MountainDifficulty;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -59,5 +62,20 @@ class ExcursionCenterTest {
         excursionCenter.retrieveExpeditioners();
 
         verify(expeditionaryCatalogue).retrieveExpeditioners();
+    }
+
+    @Test
+    void should_call_mountain_catalogue_when_creating_mountain() {
+        MountainCatalogue mountainCatalogue = mock(MountainCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(mountainCatalogue, null, null);
+        String mountainID = UUID.randomUUID().toString();
+        String mountainName = "Montseny";
+        Integer mountainHeight = 1700;
+        String mountainDifficulty = MountainDifficulty.MEDIUM.name();
+
+        excursionCenter.createMountain(mountainID, mountainName, mountainHeight, mountainDifficulty);
+
+        Mountain expectedMountain = new Mountain(mountainID, mountainName, mountainHeight, MountainDifficulty.MEDIUM);
+        verify(mountainCatalogue).addMountain(expectedMountain);
     }
 }
