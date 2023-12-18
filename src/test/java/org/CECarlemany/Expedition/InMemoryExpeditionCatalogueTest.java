@@ -34,4 +34,14 @@ class InMemoryExpeditionCatalogueTest {
 
         verify(expeditions).add(expedition);
     }
+
+    @Test
+    void should_retrieve_all_expeditions() {
+        List<Expedition> expeditions = List.of(new Expedition(UUID.randomUUID().toString(), "Excursió al Montseny", null, null, List.of(UUID.randomUUID().toString())));
+        InMemoryExpeditionCatalogue inMemoryExpeditionCatalogue = new InMemoryExpeditionCatalogue(expeditions);
+
+        List<Expedition> foundExpeditions = inMemoryExpeditionCatalogue.retrieveExpeditions();
+
+        assertEquals(expeditions, foundExpeditions);
+    }
 }

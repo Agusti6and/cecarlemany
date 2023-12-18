@@ -73,4 +73,8 @@ public class ExcursionCenter {
     public Mountain retrieveMountainByID(String mountainID) {
         return mountainCatalogue.retrieveMountainByID(mountainID);
     }
+
+    public List<Expedition> retrieveExpeditions() {
+        return expeditionCatalogue.retrieveExpeditions();
+    }
 }

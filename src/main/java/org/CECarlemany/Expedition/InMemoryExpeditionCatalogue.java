@@ -26,4 +26,9 @@ public class InMemoryExpeditionCatalogue implements ExpeditionCatalogue {
     public void addExpedition(Expedition newExpedition) {
         expeditions.add(newExpedition);
     }
+
+    @Override
+    public List<Expedition> retrieveExpeditions() {
+        return expeditions;
+    }
 }

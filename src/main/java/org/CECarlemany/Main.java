@@ -28,10 +28,11 @@ public class Main {
             put(6, "List mountains");
             put(7, "Find mountain by ID");
             put(8, "Create expedition");
+            put(9, "List expeditions");
             put(0, "Exit program");
         }};
 
-        Scanner consoleLineScanner = new Scanner(System.in);
+        Scanner consoleLineScanner = new Scanner(System.in).useDelimiter("\n");
 
         do {
             for (Map.Entry<Integer, String> entry : mainMenuOptions.entrySet()) {
@@ -49,10 +50,18 @@ public class Main {
                 case 6 -> getAllMountainsMenu(excursionCenter);
                 case 7 -> getMountainByIDMenu(consoleLineScanner, excursionCenter);
                 case 8 -> createExpeditionMenu(consoleLineScanner, excursionCenter);
+                case 9 -> getAllExpeditionsMenu(excursionCenter);
                 case 0 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void getAllExpeditionsMenu(ExcursionCenter excursionCenter) {
+        List<Expedition> expeditions = excursionCenter.retrieveExpeditions();
+        for (Expedition expedition : expeditions) {
+            new ExpeditionConsolePrinter(expedition).print();
+        }
     }
 
     private static void getMountainByIDMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
