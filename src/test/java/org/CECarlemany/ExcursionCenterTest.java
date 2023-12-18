@@ -50,4 +50,14 @@ class ExcursionCenterTest {
         Expeditionary expectedExpeditionary = new Medic(expeditionaryId, expeditionaryName);
         verify(expeditionaryCatalogue).addExpeditionary(expectedExpeditionary);
     }
+
+    @Test
+    void should_call_expeditionary_catalogue_when_retrieving_expeditionaries() {
+        ExpeditionaryCatalogue expeditionaryCatalogue = mock(ExpeditionaryCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(null, expeditionaryCatalogue, null);
+
+        excursionCenter.retrieveExpeditionaries();
+
+        verify(expeditionaryCatalogue).retrieveExpeditionaries();
+    }
 }

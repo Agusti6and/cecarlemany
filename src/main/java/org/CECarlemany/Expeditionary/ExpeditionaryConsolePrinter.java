@@ -13,6 +13,7 @@ public class ExpeditionaryConsolePrinter implements ConsolePrinter {
 
     @Override
     public void print() {
+        System.out.println("Expeditionary type: " + expeditionary.expeditionaryType);
         System.out.println("Expeditionary ID: " + expeditionary.expeditionaryID);
         System.out.println("Expeditionary name: " + expeditionary.expeditionaryName);
         System.out.println("Expeditionary signed up date: " + expeditionary.signedUpDate);

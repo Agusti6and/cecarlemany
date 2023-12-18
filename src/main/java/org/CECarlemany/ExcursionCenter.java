@@ -41,4 +41,8 @@ public class ExcursionCenter {
         }
         expeditionaryCatalogue.addExpeditionary(newExpeditionary);
     }
+
+    public List<Expeditionary> retrieveExpeditionaries() {
+        return expeditionaryCatalogue.retrieveExpeditionaries();
+    }
 }
