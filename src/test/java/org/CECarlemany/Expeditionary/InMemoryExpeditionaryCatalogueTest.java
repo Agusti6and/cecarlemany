@@ -31,4 +31,17 @@ class InMemoryExpeditionaryCatalogueTest {
 
         assertEquals(expeditioners, foundExpeditioners);
     }
+
+    @Test
+    void should_retrieve_expeditionary_by_id() {
+        String expeditionaryIdToLookFor = UUID.randomUUID().toString();
+        Expeditionary firstExpeditionary = new Alpinist(UUID.randomUUID().toString(), "Joan");
+        Expeditionary secondExpeditionary = new Alpinist(expeditionaryIdToLookFor, "Joan");
+        List<Expeditionary> expeditioners = List.of(firstExpeditionary, secondExpeditionary);
+        InMemoryExpeditionaryCatalogue inMemoryExpeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(expeditioners);
+
+        Expeditionary foundExpeditionary = inMemoryExpeditionaryCatalogue.retrieveExpeditionaryByID(expeditionaryIdToLookFor);
+
+        assertEquals(secondExpeditionary, foundExpeditionary);
+    }
 }

@@ -108,4 +108,15 @@ class ExcursionCenterTest {
         Expedition expectedExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, List.of(expeditionaryID));
         verify(expeditionCatalogue).addExpedition(expectedExpedition);
     }
+
+    @Test
+    void should_call_expeditionary_catalogue_when_retrieving_expeditionary_by_id() {
+        ExpeditionaryCatalogue expeditionaryCatalogue = mock(ExpeditionaryCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(null, expeditionaryCatalogue, null);
+        String expeditionaryID = UUID.randomUUID().toString();
+
+        excursionCenter.retrieveExpeditionaryByID(expeditionaryID);
+
+        verify(expeditionaryCatalogue).retrieveExpeditionaryByID(expeditionaryID);
+    }
 }

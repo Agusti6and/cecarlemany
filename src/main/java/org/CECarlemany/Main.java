@@ -23,9 +23,10 @@ public class Main {
             put(1, "Get expeditions of an expeditionary");
             put(2, "Create expeditionary");
             put(3, "List expeditioners");
-            put(4, "Create mountain");
-            put(5, "List mountains");
-            put(6, "Create expedition");
+            put(4, "Find expeditionary by ID");
+            put(5, "Create mountain");
+            put(6, "List mountains");
+            put(7, "Create expedition");
             put(0, "Exit program");
         }};
 
@@ -42,13 +43,23 @@ public class Main {
                 case 1 -> getExpeditionsByExpeditionaryIDMenu(consoleLineScanner, excursionCenter);
                 case 2 -> createExpeditionaryMenu(consoleLineScanner, excursionCenter);
                 case 3 -> getAllExpeditionersMenu(excursionCenter);
-                case 4 -> createMountainMenu(consoleLineScanner, excursionCenter);
-                case 5 -> getAllMountainsMenu(excursionCenter);
-                case 6 -> createExpeditionMenu(consoleLineScanner, excursionCenter);
+                case 4 -> getExpeditionaryByIDMenu(consoleLineScanner, excursionCenter);
+                case 5 -> createMountainMenu(consoleLineScanner, excursionCenter);
+                case 6 -> getAllMountainsMenu(excursionCenter);
+                case 7 -> createExpeditionMenu(consoleLineScanner, excursionCenter);
                 case 0 -> System.exit(0);
                 default -> System.out.println("Option not available");
             }
         } while (true);
+    }
+
+    private static void getExpeditionaryByIDMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {
+        System.out.println("Enter expeditionary ID:");
+        String expeditionaryID = consoleLineScanner.next();
+
+        Expeditionary expeditionary = excursionCenter.retrieveExpeditionaryByID(expeditionaryID);
+        ExpeditionaryConsolePrinter expeditionaryConsolePrinter = new ExpeditionaryConsolePrinter(expeditionary);
+        expeditionaryConsolePrinter.print();
     }
 
     private static void createExpeditionMenu(Scanner consoleLineScanner, ExcursionCenter excursionCenter) {

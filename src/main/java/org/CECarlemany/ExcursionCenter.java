@@ -65,4 +65,8 @@ public class ExcursionCenter {
         Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDateLocalDateTime, expeditionMountainID, List.of(expeditionExpeditionaryID));
         expeditionCatalogue.addExpedition(newExpedition);
     }
+
+    public Expeditionary retrieveExpeditionaryByID(String expeditionaryID) {
+        return expeditionaryCatalogue.retrieveExpeditionaryByID(expeditionaryID);
+    }
 }
