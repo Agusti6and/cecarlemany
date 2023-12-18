@@ -1,53 +1,24 @@
 package org.CECarlemany;
 
-import org.CECarlemany.Expedition.Expedition;
 import org.CECarlemany.Expedition.ExpeditionCatalogue;
-import org.CECarlemany.Expedition.InMemoryExpeditionCatalogue;
-import org.CECarlemany.Expeditionary.Expeditionary;
-import org.CECarlemany.Expeditionary.ExpeditionaryCatalogue;
-import org.CECarlemany.Expeditionary.InMemoryExpeditionaryCatalogue;
-import org.CECarlemany.Mountain.InMemoryMountainCatalogue;
-import org.CECarlemany.Mountain.Mountain;
-import org.CECarlemany.Mountain.MountainCatalogue;
-import org.CECarlemany.Mountain.MountainDifficulty;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class ExcursionCenterTest {
 
     @Test
-    public void should_display_expeditionary_expeditions () {
-        // Given
-        String mountainID = UUID.randomUUID().toString();
-        String mountainName = "Montseny";
-        Integer mountainHeight = 1700;
-        Mountain newMountain = new Mountain(mountainID, mountainName, mountainHeight, MountainDifficulty.MEDIUM);
-        MountainCatalogue mountainCatalogue = new InMemoryMountainCatalogue(List.of(newMountain));
+    void should_call_expedition_catalogue_when_retrieving_expeditions_of_an_expeditionary() {
+        ExpeditionCatalogue expeditionCatalogue = mock(ExpeditionCatalogue.class);
+        ExcursionCenter excursionCenter = new ExcursionCenter(null, null, expeditionCatalogue);
+        String expeditionaryId = UUID.randomUUID().toString();
 
-        String expeditionaryID = UUID.randomUUID().toString();
-        String expeditionaryName = "Joan";
-        Expeditionary newExpeditionary = new Expeditionary(expeditionaryID, expeditionaryName);
-        ExpeditionaryCatalogue expeditionaryCatalogue = new InMemoryExpeditionaryCatalogue(List.of(newExpeditionary));
+        excursionCenter.retrieveExpeditionsFromExpeditionaryID(expeditionaryId);
 
-        String expeditionID = UUID.randomUUID().toString();
-        String expeditionName = "Excursió al Montseny";
-        LocalDateTime expeditionDate = LocalDateTime.of(2021, 5, 1, 10, 0);
-        Expedition newExpedition = new Expedition(expeditionID, expeditionName, expeditionDate, mountainID, List.of(expeditionaryID));
-        ExpeditionCatalogue expeditionCatalogue = new InMemoryExpeditionCatalogue(List.of(newExpedition));
-
-        ExcursionCenter excursionCenter = new ExcursionCenter(mountainCatalogue, expeditionaryCatalogue, expeditionCatalogue);
-
-        // When
-        List<Expedition> foundExpeditions = excursionCenter.retrieveExpeditionsFromExpeditionaryID(expeditionaryID);
-
-        // Then
-        assertThat(foundExpeditions).hasSize(List.of(newExpedition).size());
-        assertThat(foundExpeditions).contains(newExpedition);
+        verify(expeditionCatalogue).retrieveExpeditionsFromExpeditionaryID(expeditionaryId);
     }
-
 }

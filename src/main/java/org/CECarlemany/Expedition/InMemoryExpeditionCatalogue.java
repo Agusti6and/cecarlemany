@@ -16,4 +16,9 @@ public class InMemoryExpeditionCatalogue implements ExpeditionCatalogue {
     public InMemoryExpeditionCatalogue(List<Expedition> expeditions) {
         this.expeditions = expeditions;
     }
+
+    @Override
+    public List<Expedition> retrieveExpeditionsFromExpeditionaryID(String expeditionaryId) {
+        return null;
+    }
 }
