@@ -29,6 +29,6 @@ public class ExcursionCenter {
     }
 
     public List<Expedition> retrieveExpeditionsFromExpeditionaryID(String expeditionaryID) {
-        return new ArrayList<>();
+        return expeditionCatalogue.retrieveExpeditionsFromExpeditionaryID(expeditionaryID);
     }
 }
